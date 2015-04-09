@@ -1,8 +1,8 @@
 == README
 
 Adding my user authentication involved the following steps:
-
-app>controllers
+_______________________________________________
+app/controllers
 ADD sessions_controller.rb
 - Wondering where the log_in and log_out methods came from? Check out the controller helper.
 
@@ -81,8 +81,8 @@ class WelcomesController < ApplicationController
   end
 
 end
-
-app>helpers
+_______________________________________________
+app/helpers
 ADD sessions_helper.rb
 module SessionsHelper
 
@@ -108,16 +108,18 @@ module SessionsHelper
   end
 
 end
-
-app>models
+_______________________________________________
+app/models
 ADD user.rb
+- Wondering what has_secure_password does? The answer is a lot! Check out this 
+[description on GitHub](https://github.com/rails/rails/blob/82dd60b5b7ed915dcf1eca603ea5e615c6e47a3d/activemodel/lib/active_model/secure_password.rb)
 
 class User < ActiveRecord::Base
   
   has_secure_password
   
 end
-
+_______________________________________________
 config/routes
 ADD the following routes
 
@@ -130,10 +132,56 @@ Rails.application.routes.draw do
   resources :users
   root 'welcomes#index'
 end
-
+_______________________________________________
 db/migrate
 ADD [timestamp]_create_users.rb
-
+_______________________________________________
 Gemfile
 ADD (or uncomment if it's already there):
 gem 'bcrypt', '~> 3.1.7'
+_______________________________________________
+app/views
+ADD sessions folder, then ADD new.html.erb
+
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>
+
+ADD users folder, then ADD new.html.erb
+<% provide(:title, 'Sign up')%>
+
+<h2>Sign up</h2>
+
+<%= form_for :user, url: '/users' do |f|%> 
+Username: <%= f.text_field :username %><br><br>
+Email: <%= f.text_field :email %><br><br>
+Password: <%= f.password_field :password %><br><br>
+Password Confirmation: <%= f.password_field :password_confirmation %><br><br>
+<%= f.submit "Submit" %>
+<%end%>
+
+ADD welcomes folder, then ADD index.html.erb
+<h2>Welcome!</h2>
+
+<p><%= link_to "Log in!", login_path %></p>
+
+<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+_______________________________________________
+
+That's all you should need in order to implement user authentication! Let me know if you have any questions or feedback.
