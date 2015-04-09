@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FirstRailsApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <% if current_user %>
+  Signed in as <%= current_user.username %> | <%= link_to "Logout", '/logout', {method: :delete} %>
+<% else %>
+  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+<% end %>
+  </header>
+  <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+  <div id="main-container" class="container">
+    <div class="row">
+      <div class="col-xs-3">
+      </div>
+      <div class="col-xs-9">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
