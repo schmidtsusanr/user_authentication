@@ -1,13 +1,13 @@
-== README
+# README
 
-Adding my user authentication involved the following steps:
-_______________________________________________
-app/controllers
-ADD sessions_controller.rb
+## Adding my user authentication involved the following steps:
+---
+### Controllers (app/controllers)
+#### ADD sessions_controller.rb
 - Wondering where the log_in and log_out methods came from? Check out the controller helper.
 
+```
 class SessionsController < ApplicationController
-
   def new
   end
 
@@ -28,9 +28,11 @@ class SessionsController < ApplicationController
   end
 
 end
+```
 
-ADD users_controller.rb
+#### ADD users_controller.rb
 
+```
 class UsersController < ApplicationController
   
   def show
@@ -71,9 +73,11 @@ class UsersController < ApplicationController
     end
 
 end
+```
 
-ADD welcomes_controller.rb (not necessary, just a current preference choice)
+#### ADD welcomes_controller.rb (not necessary, just a current preference choice)
 
+```
 class WelcomesController < ApplicationController
 
   def index
@@ -81,9 +85,11 @@ class WelcomesController < ApplicationController
   end
 
 end
-_______________________________________________
-app/helpers
-ADD sessions_helper.rb
+```
+---
+### Helpers (app/helpers)
+#### ADD sessions_helper.rb
+```
 module SessionsHelper
 
   def log_in(user)
@@ -108,21 +114,25 @@ module SessionsHelper
   end
 
 end
-_______________________________________________
-app/models
-ADD user.rb
+```
+---
+### Models (app/models)
+#### ADD user.rb
 - Wondering what has_secure_password does? The answer is a lot! Check out this 
 [description on GitHub](https://github.com/rails/rails/blob/82dd60b5b7ed915dcf1eca603ea5e615c6e47a3d/activemodel/lib/active_model/secure_password.rb)
 
+```
 class User < ActiveRecord::Base
   
   has_secure_password
   
 end
-_______________________________________________
-config/routes
-ADD the following routes
+```
+---
+### Routes (config/routes)
+#### ADD the following routes
 
+```
 Rails.application.routes.draw do
   get    'signup'  => 'users#new'
   post   'users'  => 'users#create'
@@ -132,17 +142,21 @@ Rails.application.routes.draw do
   resources :users
   root 'welcomes#index'
 end
-_______________________________________________
-db/migrate
-ADD [timestamp]_create_users.rb
-_______________________________________________
-Gemfile
-ADD (or uncomment if it's already there):
+```
+---
+### Migrations (db/migrate)
+#### ADD [timestamp]_create_users.rb
+---
+### Gem (Gemfile)
+#### ADD (or uncomment if it's already there):
+```
 gem 'bcrypt', '~> 3.1.7'
-_______________________________________________
-app/views
-ADD sessions folder, then ADD new.html.erb
+```
+---
+### Views (app/views)
+#### ADD sessions folder, then ADD new.html.erb
 
+```
 <% provide(:title, "Log in") %>
 <h1>Log in</h1>
 
@@ -162,8 +176,10 @@ ADD sessions folder, then ADD new.html.erb
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>
 </div>
+```
 
-ADD users folder, then ADD new.html.erb
+#### ADD users folder, then ADD new.html.erb
+```
 <% provide(:title, 'Sign up')%>
 
 <h2>Sign up</h2>
@@ -175,13 +191,23 @@ Password: <%= f.password_field :password %><br><br>
 Password Confirmation: <%= f.password_field :password_confirmation %><br><br>
 <%= f.submit "Submit" %>
 <%end%>
+```
 
-ADD welcomes folder, then ADD index.html.erb
+#### ADD welcomes folder, then ADD index.html.erb
+```
 <h2>Welcome!</h2>
 
 <p><%= link_to "Log in!", login_path %></p>
 
 <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-_______________________________________________
+```
+---
 
-That's all you should need in order to implement user authentication! Let me know if you have any questions or feedback.
+### That's all you should need in order to implement user authentication! Let me know if you have any questions or feedback.
+
+**I used the following resources:**
+- [Simple Authentication with Bcrypt](https://gist.github.com/thebucknerlife/10090014), by [thebucknerlife](https://gist.github.com/thebucknerlife)
+- [secure_password.rb](https://github.com/rails/rails/blob/82dd60b5b7ed915dcf1eca603ea5e615c6e47a3d/activemodel/lib/active_model/secure_password.rb), [from the official Ruby on Rails GitHub page](https://github.com/rails/rails)
+- [Rails Tutorial online book, chapters 5-8](https://www.railstutorial.org/book), by Michael Hartl
+- [Ruby on Rails Security Guide[(http://guides.rubyonrails.org/security.html)
+- [Leon Gersing](https://github.com/leongersing)
