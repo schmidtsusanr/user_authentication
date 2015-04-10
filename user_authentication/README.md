@@ -1,9 +1,9 @@
 # README
 
 ## Adding my user authentication involved the following steps:
----
+
 ### Controllers (app/controllers)
-#### ADD sessions_controller.rb
+**ADD sessions_controller.rb**
 - Wondering where the log_in and log_out methods came from? Check out the controller helper.
 
 ```
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
 end
 ```
 
-#### ADD users_controller.rb
+**ADD users_controller.rb**
 
 ```
 class UsersController < ApplicationController
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
 end
 ```
 
-#### ADD welcomes_controller.rb (not necessary, just a current preference choice)
+**ADD welcomes_controller.rb (not necessary, just a current preference choice)**
 
 ```
 class WelcomesController < ApplicationController
@@ -86,9 +86,9 @@ class WelcomesController < ApplicationController
 
 end
 ```
----
+
 ### Helpers (app/helpers)
-#### ADD sessions_helper.rb
+**ADD sessions_helper.rb**
 ```
 module SessionsHelper
 
@@ -115,9 +115,9 @@ module SessionsHelper
 
 end
 ```
----
+
 ### Models (app/models)
-#### ADD user.rb
+**ADD user.rb**
 - Wondering what has_secure_password does? The answer is a lot! Check out this 
 [description on GitHub](https://github.com/rails/rails/blob/82dd60b5b7ed915dcf1eca603ea5e615c6e47a3d/activemodel/lib/active_model/secure_password.rb)
 
@@ -128,9 +128,9 @@ class User < ActiveRecord::Base
   
 end
 ```
----
+
 ### Routes (config/routes)
-#### ADD the following routes
+**ADD the following routes**
 
 ```
 Rails.application.routes.draw do
@@ -143,18 +143,18 @@ Rails.application.routes.draw do
   root 'welcomes#index'
 end
 ```
----
+
 ### Migrations (db/migrate)
-#### ADD [timestamp]_create_users.rb
----
+**ADD [timestamp]_create_users.rb**
+
 ### Gem (Gemfile)
-#### ADD (or uncomment if it's already there):
+**ADD (or uncomment if it's already there):**
 ```
 gem 'bcrypt', '~> 3.1.7'
 ```
----
+
 ### Views (app/views)
-#### ADD sessions folder, then ADD new.html.erb
+**ADD sessions folder, then ADD new.html.erb**
 
 ```
 <% provide(:title, "Log in") %>
@@ -178,7 +178,7 @@ gem 'bcrypt', '~> 3.1.7'
 </div>
 ```
 
-#### ADD users folder, then ADD new.html.erb
+**ADD users folder, then ADD new.html.erb**
 ```
 <% provide(:title, 'Sign up')%>
 
@@ -193,7 +193,7 @@ Password Confirmation: <%= f.password_field :password_confirmation %><br><br>
 <%end%>
 ```
 
-#### ADD welcomes folder, then ADD index.html.erb
+**ADD welcomes folder, then ADD index.html.erb**
 ```
 <h2>Welcome!</h2>
 
@@ -201,13 +201,13 @@ Password Confirmation: <%= f.password_field :password_confirmation %><br><br>
 
 <p>New user? <%= link_to "Sign up now!", signup_path %></p>
 ```
----
 
-### That's all you should need in order to implement user authentication! Let me know if you have any questions or feedback.
+
+##### That's all you should need in order to implement user authentication! Let me know if you have any questions or feedback.
 
 **I used the following resources:**
 - [Simple Authentication with Bcrypt](https://gist.github.com/thebucknerlife/10090014), by [thebucknerlife](https://gist.github.com/thebucknerlife)
 - [secure_password.rb](https://github.com/rails/rails/blob/82dd60b5b7ed915dcf1eca603ea5e615c6e47a3d/activemodel/lib/active_model/secure_password.rb), [from the official Ruby on Rails GitHub page](https://github.com/rails/rails)
 - [Rails Tutorial online book, chapters 5-8](https://www.railstutorial.org/book), by Michael Hartl
-- [Ruby on Rails Security Guide[(http://guides.rubyonrails.org/security.html)
+- [Ruby on Rails Security Guide](http://guides.rubyonrails.org/security.html)
 - [Leon Gersing](https://github.com/leongersing)
