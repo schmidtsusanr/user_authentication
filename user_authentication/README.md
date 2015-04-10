@@ -1,6 +1,6 @@
 # README
 
-## Adding my user authentication involved the following steps:
+**Adding my user authentication involved the following steps:**
 
 ### Controllers (app/controllers)
 **ADD sessions_controller.rb**
