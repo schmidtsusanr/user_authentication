@@ -222,7 +222,7 @@ Password Confirmation: <%= f.password_field :password_confirmation %><br><br>
 ---
 **Resources:**
 - [Simple Authentication with Bcrypt](https://gist.github.com/thebucknerlife/10090014), by [thebucknerlife](https://gist.github.com/thebucknerlife)
-- [secure_password.rb](https://github.com/rails/rails/blob/82dd60b5b7ed915dcf1eca603ea5e615c6e47a3d/activemodel/lib/active_model/secure_password.rb), [from the official Ruby on Rails GitHub page](https://github.com/rails/rails)
+- [secure_password.rb](https://github.com/rails/rails/blob/82dd60b5b7ed915dcf1eca603ea5e615c6e47a3d/activemodel/lib/active_model/secure_password.rb), from the [official Ruby on Rails GitHub page](https://github.com/rails/rails)
 - [Rails Tutorial online book, chapters 5-8](https://www.railstutorial.org/book), by Michael Hartl
 - [Ruby on Rails Security Guide](http://guides.rubyonrails.org/security.html)
 - [Leon Gersing](https://github.com/leongersing), developer and teacher extraordinaire
